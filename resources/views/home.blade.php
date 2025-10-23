@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="max-w-4xl mx-auto p-4 pb-20">
-    
+
     <div class="swiper mySwiper rounded-lg">
         <div class="swiper-wrapper">
             <div class="swiper-slide flex justify-center">
@@ -34,18 +34,18 @@
             @auth
             {{-- Bagian ini ditampilkan jika pengguna sudah login --}}
             <a href="{{ route('logout') }}" class="flex flex-col items-center justify-center space-y-1 transform transition duration-100 hover:scale-105" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <img src="{{ asset('icon/logout1.png') }}" alt="Logout" class="h-8 w-8 object-contain">
+                <img src="{{ asset('icon/Logout1.png') }}" alt="Logout" class="h-8 w-8 object-contain">
                 <span class="text-xs text-center font-bold mb-2 text-gray-700">Logout</span>
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
             @else
-                {{-- Bagian ini ditampilkan jika pengguna belum login --}}
-                <a href="{{ route('login') }}" class="flex flex-col items-center justify-center space-y-1 transform transition duration-100 hover:scale-105">
-                    <img src="{{ asset('icon/login.png') }}" alt="Login" class="h-8 w-8 object-contain">
-                    <span class="text-xs text-center font-bold mb-2 text-gray-700">Login</span>
-                </a>
+            {{-- Bagian ini ditampilkan jika pengguna belum login --}}
+            <a href="{{ route('login') }}" class="flex flex-col items-center justify-center space-y-1 transform transition duration-100 hover:scale-105">
+                <img src="{{ asset('icon/login.png') }}" alt="Login" class="h-8 w-8 object-contain">
+                <span class="text-xs text-center font-bold mb-2 text-gray-700">Login</span>
+            </a>
             @endauth
             <a href="/formulir" class="flex flex-col items-center justify-center space-y-1 transform transition duration-100 hover:scale-105">
                 <img src="{{ asset('icon/formulir.png') }}" alt="Formulir" class="h-8 w-8 object-contain">
@@ -62,47 +62,52 @@
         </div>
     </section>
 
-<style>
-    .material-symbols-outlined {
-        font-size: 72px;
-        color: blue;
-        font-variation-settings:
-        'FILL' 1,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 48;
-    }
+    <style>
+        .material-symbols-outlined {
+            font-size: 72px;
+            color: blue;
+            font-variation-settings:
+                'FILL'1,
+                'wght'400,
+                'GRAD'0,
+                'opsz'48;
+        }
 
-    /* Kode CSS untuk animasi bounce yang lebih baik */
-    @keyframes bounce-up {
-        0% {
-            opacity: 0;
-            /* Dimulai dari bawah dengan jarak yang lebih jauh */
-            transform: translateY(200px);
-        }
-        60% {
-            /* Memantul ke atas dan sedikit overshoot */
-            transform: translateY(-10px);
-        }
-        80% {
-            /* Memantul ke bawah sedikit sebelum berhenti */
-            transform: translateY(7px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+        /* Kode CSS untuk animasi bounce yang lebih baik */
+        @keyframes bounce-up {
+            0% {
+                opacity: 0;
+                /* Dimulai dari bawah dengan jarak yang lebih jauh */
+                transform: translateY(200px);
+            }
 
-    .animate-bounce-up {
-        animation: bounce-up 0.7s ease-out;
-        animation-fill-mode: backwards;
-    }
-    .animate-bounce-up-delay {
-        animation: bounce-up 0.7s ease-out 0.7s;
-        animation-fill-mode: backwards;
-    }
-</style>
+            60% {
+                /* Memantul ke atas dan sedikit overshoot */
+                transform: translateY(-10px);
+            }
+
+            80% {
+                /* Memantul ke bawah sedikit sebelum berhenti */
+                transform: translateY(7px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-bounce-up {
+            animation: bounce-up 0.7s ease-out;
+            animation-fill-mode: backwards;
+        }
+
+        .animate-bounce-up-delay {
+            animation: bounce-up 0.7s ease-out 0.7s;
+            animation-fill-mode: backwards;
+        }
+
+    </style>
 
     <section class="mt-4">
         {{-- <h2 class="text-lg font-bold mb-2 text-center">Pilih Layanan</h2> --}}
@@ -127,18 +132,22 @@
                 color: blue;
                 font-weight: bold;
             }
+
             .biru {
                 color: green;
                 font-weight: bold;
             }
+
             .hijau {
                 color: orange;
                 font-weight: bold;
             }
+
             .kuning {
                 color: red;
                 font-weight: bold;
             }
+
         </style>
         <p class="mt-2 text-black/70">
             <span class="merah">P</span>elayanan <span class="biru">On</span>line
@@ -153,21 +162,21 @@
 
 {{-- HTML MODAL LOGIN - ID: login-modal --}}
 <div id="login-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
-    
+
     {{-- Container untuk pemusatan penuh --}}
     {{-- Menggunakan min-h-full dan menghapus kelas responsif yang berpotensi memecahkan pemusatan Flexbox --}}
-    <div class="flex items-center justify-center min-h-full px-4 py-6 text-center"> 
-        
+    <div class="flex items-center justify-center min-h-full px-4 py-6 text-center">
+
         {{-- BackDrop (Lapisan Abu-abu Transparan) --}}
         {{-- Z-index disetel ke 40 (lebih rendah dari konten modal) --}}
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity z-40" aria-hidden="true"></div> 
-        
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity z-40" aria-hidden="true"></div>
+
         {{-- Kotak Konten Modal (Kotak Putih) --}}
         {{-- Z-index disetel ke 50 (paling atas) --}}
         <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl 
                     transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6 
-                    relative z-50"> 
-            
+                    relative z-50">
+
             <div class="sm:flex sm:items-start">
                 <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-blue-600">
@@ -230,7 +239,7 @@
             // Logika ketika user BELUM login: Tampilkan Modal
 
             // 1. Link Layanan Online (adminduk-link)
-            if (admindukLink) { 
+            if (admindukLink) {
                 admindukLink.addEventListener('click', function(e) {
                     e.preventDefault();
                     showModal();
@@ -244,7 +253,7 @@
                     showModal();
                 });
             }
-            
+
             // 3. Link Riwayat (riwayatLink) - dari footer
             if (riwayatLink) {
                 riwayatLink.addEventListener('click', function(e) {
@@ -252,7 +261,7 @@
                     showModal();
                 });
             }
-            
+
             // 4. Link Akun (akunLink) - dari footer
             if (akunLink) {
                 akunLink.addEventListener('click', function(e) {
@@ -260,7 +269,7 @@
                     showModal();
                 });
             }
-            
+
             // 5. Link Kedatangan
             if (kedatanganLink) {
                 kedatanganLink.addEventListener('click', function(e) {
@@ -309,6 +318,7 @@
             @endguest
         }
     });
+
 </script>
 
 {{-- SCRIPT LIGHTBOX UNTUK GAMBAR SLIDER --}}
@@ -316,26 +326,26 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Mendapatkan semua link yang memiliki kelas lightbox-link
         const lightboxLinks = document.querySelectorAll('.lightbox-link');
-        
+
         lightboxLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault(); // Mencegah browser membuka link
-                
+
                 // Mendapatkan URL gambar dari atribut href
                 const imageUrl = this.getAttribute('href');
-                
+
                 // Membuat overlay untuk lightbox
                 const overlay = document.createElement('div');
                 overlay.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50';
-                
+
                 // Membuat elemen gambar untuk ditampilkan di dalam overlay
                 const imgElement = document.createElement('img');
                 imgElement.src = imageUrl;
                 imgElement.className = 'max-w-full max-h-full';
-                
+
                 overlay.appendChild(imgElement);
                 document.body.appendChild(overlay);
-                
+
                 // Menutup lightbox saat overlay diklik
                 overlay.addEventListener('click', function() {
                     document.body.removeChild(overlay);
@@ -343,22 +353,32 @@
             });
         });
     });
+
 </script>
 @endsection
 
 @push('scripts')
 {{-- SweetAlert2 already loaded in app.blade.php --}}
-    
+
+<script>
+    Swal.fire({
+        html: '<main class="flex-grow flex items-center justify-center"><div class="max-w-4xl mx-auto p-6 md:p-10 bg-white shadow-2xl rounded-xl overflow-hidden md:flex"><div class="md:w-1/2 p-4 md:pr-8 flex flex-col justify-center"><span class="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-2">Layanan Cepat & Mudah</span><h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4"> Selamat Datang di Pondok Dukcapil Tapin! 👋 </h2><p class="text-lg text-gray-600 mb-6"> Akses semua layanan digital dan informasi terbaru dengan mudah. Kami siap melayani Anda. </p></div><div class="md:w-1/2 mt-8 md:mt-0 relative"><img src="/images/bos.jpg" alt="Ilustrasi Selamat Datang" class="w-full h-auto object-cover rounded-lg transform hover:scale-[1.02] transition duration-300 ease-in-out" style="max-height: 400px;"></div></div></main>'
+        , showConfirmButton: false
+        , timer: 5000
+    });
+
+</script>
 
 @if(session('success'))
 <script>
     Swal.fire({
-        icon: 'success',
-        title: 'Berhasil!',
-        text: '{{ session('success') }}',
-        showConfirmButton: false,
-        timer: 1500
+        icon: 'success'
+        , title: 'Berhasil!'
+        , text: 'Silahkan akses menu layanan dan ajukan permohonan.'
+        , showConfirmButton: false
+        , timer: 1500
     });
+
 </script>
 @endif
 @endpush
