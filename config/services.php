@@ -39,4 +39,9 @@ return [
         'secret_key' => env('TURNSTILE_SECRET_KEY'),
     ],
 
+    'whatsapp' => [
+        'api_url' => env('WHATSAPP_API_URL'),
+        'api_key' => env('WHATSAPP_API_KEY'),
+    ],
+
 ];
