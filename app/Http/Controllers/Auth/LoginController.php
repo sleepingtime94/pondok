@@ -16,14 +16,14 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    
+
     public function login(Request $request)
     {
 
-        $turnstileResponse = $request->input('turnstileToken');
-        if (!CaptchaHelper::verifyTurnstile($turnstileResponse, $request->ip())) {
-            return back()->withErrors(['captcha' => 'Captcha tidak valid, silakan coba lagi.'])->onlyInput('nik');
-        }
+        // $turnstileResponse = $request->input('turnstileToken');
+        // if (!CaptchaHelper::verifyTurnstile($turnstileResponse, $request->ip())) {
+        //     return back()->withErrors(['captcha' => 'Captcha tidak valid, silakan coba lagi.'])->onlyInput('nik');
+        // }
 
         // Validasi input dasar
         $credentials = $request->validate([
