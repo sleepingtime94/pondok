@@ -36,7 +36,8 @@ return [
     ],
 
     'turnstile' => [
-        'secret_key' => env('TURNSTILE_SECRET_KEY'),
+        'key' => env('TURNSTILE_SITE_KEY'),
+        'secret' => env('TURNSTILE_SECRET_KEY'),
     ],
 
     'whatsapp' => [

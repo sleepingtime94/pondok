@@ -13,7 +13,7 @@ class CaptchaHelper
             return false;
         }
 
-        $secretKey = config('services.turnstile.secret', '0x4AAAAAABlUuuhpoCaKaNS1g6iueUMwU_c');
+        $secretKey = config('services.turnstile.secret');
         $verifyURL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
         try {
@@ -23,11 +23,19 @@ class CaptchaHelper
                 'remoteip' => $ipAddress,
             ]);
 
-            $resultData = $response->json();
+            $result = $response->json();
 
-            return $resultData['success'] ?? false;
+            if (!empty($result['success']) && $result['success'] === true) {
+                return true;
+            }
+
+            Log::warning('Turnstile verification failed', [
+                'response' => $result,
+            ]);
+
+            return false;
         } catch (\Exception $e) {
-            Log::error('Turnstile verify error: ' . $e->getMessage());
+            Log::error('Turnstile verification error: ' . $e->getMessage());
             return false;
         }
     }
