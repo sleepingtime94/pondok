@@ -362,9 +362,14 @@
 
 <script>
     Swal.fire({
-        html: '<main class="flex-grow flex items-center justify-center"><div class="max-w-4xl mx-auto p-6 md:p-10 bg-white shadow-2xl rounded-xl overflow-hidden md:flex"><div class="md:w-1/2 p-4 md:pr-8 flex flex-col justify-center"><span class="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-2">Layanan Cepat & Mudah</span><h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4"> Selamat Datang di Pondok Dukcapil Tapin! 👋 </h2><p class="text-lg text-gray-600 mb-6"> Akses semua layanan digital dan informasi terbaru dengan mudah. Kami siap melayani Anda. </p></div><div class="md:w-1/2 mt-8 md:mt-0 relative"><img src="/images/bos.jpg" alt="Ilustrasi Selamat Datang" class="w-full h-auto object-cover rounded-lg transform hover:scale-[1.02] transition duration-300 ease-in-out" style="max-height: 400px;"></div></div></main>'
+        html: `<main class="flex flex-col items-center justify-center min-h-screen bg-white"><div class="w-full h-full flex flex-col justify-center text-center px-4 sm:px-6 lg:px-8 py-10"><span class="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-2"> Layanan Cepat & Mudah </span><h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-4"> Selamat Datang di Pondok Dukcapil Tapin! 👋 </h2><p class="text-base sm:text-lg text-gray-600 mb-6"> Akses semua layanan digital dan informasi terbaru dengan mudah. Kami siap melayani Anda. </p><div class="flex justify-center"><img src="/images/bos.jpg" alt="Ilustrasi Selamat Datang" class="w-full max-w-3xl h-auto object-contain rounded-lg transform hover:scale-[1.02] transition duration-300 ease-in-out" style="max-height: 80vh;" ></div></div></main>`
         , showConfirmButton: false
-        , timer: 5000
+        , timer: 4000
+        , customClass: {
+            popup: 'p-0 !w-screen !h-screen !max-w-none !rounded-none bg-white'
+            , container: '!p-0'
+        }
+        , backdrop: false
     });
 
 </script>
