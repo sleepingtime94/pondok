@@ -201,6 +201,9 @@
                 </div>
             </div>
 
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAABlUukFcJ2Ij3GAq" data-size="flexible"></div>
+            <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
             {{-- Tombol Simpan --}}
             <div class="flex items-center justify-between mt-6 pt-4">
                 <button type="submit"

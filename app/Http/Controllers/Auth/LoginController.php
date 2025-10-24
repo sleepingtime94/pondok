@@ -5,56 +5,25 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\CaptchaHelper;
+use Illuminate\Support\Facades\Http;
 
 class LoginController extends Controller
 {
-    /**
-     * Tampilkan formulir login.
-     *
-     * @return \Illuminate\View\View
-     */
+
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    /**
-     * Tangani permintaan login.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function login(Request $request)
     {
 
-        // Validasi Turnstile (Cloudflare CAPTCHA)
-        // $turnstileResponse = $request->input('turnstileToken');
-        // if (!$turnstileResponse) {
-        //     return back()->withErrors(['captcha' => 'Captcha wajib diisi.'])->onlyInput('nik');
-        // }
-
-        // $secretKey = config('services.turnstile.secret', '0x4AAAAAABlUuuhpoCaKaNS1g6iueUMwU_c');
-        // $verifyURL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
-
-        // try {
-        //     $client = new \GuzzleHttp\Client(['timeout' => 5]);
-        //     $response = $client->post($verifyURL, [
-        //         'form_params' => [
-        //             'secret'   => $secretKey,
-        //             'response' => $turnstileResponse,
-        //             'remoteip' => $request->ip(),
-        //         ],
-        //     ]);
-
-        //     $resultData = json_decode($response->getBody()->getContents(), true);
-
-        //     if (!isset($resultData['success']) || !$resultData['success']) {
-        //         return back()->withErrors(['captcha' => 'Captcha tidak valid, silakan coba lagi.'])->onlyInput('nik');
-        //     }
-        // } catch (\Exception $e) {
-        //     // Log error jika diperlukan: \Log::error('Turnstile verify error: ' . $e->getMessage());
-        //     return back()->withErrors(['captcha' => 'Gagal memverifikasi captcha, silakan coba lagi.'])->onlyInput('nik');
-        // }
+        $turnstileResponse = $request->input('turnstileToken');
+        if (!CaptchaHelper::verifyTurnstile($turnstileResponse, $request->ip())) {
+            return back()->withErrors(['captcha' => 'Captcha tidak valid, silakan coba lagi.'])->onlyInput('nik');
+        }
 
         // Validasi input dasar
         $credentials = $request->validate([

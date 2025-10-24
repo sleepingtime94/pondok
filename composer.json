@@ -29,7 +29,7 @@
         },
         "files": [
             "app/Helpers/CryptoHelper.php",
-            "app/Helpers/jadwal_helper.php",
+            "app/Helpers/JadwalHelper.php",
             "app/Helpers/OtpHelper.php",
             "app/Helpers/UserHelper.php"
         ]
