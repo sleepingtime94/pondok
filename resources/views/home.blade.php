@@ -358,15 +358,14 @@
 @endsection
 
 @push('scripts')
-{{-- SweetAlert2 already loaded in app.blade.php --}}
-
 <script>
     Swal.fire({
-        html: `<main class="flex flex-col items-center justify-center min-h-screen bg-white"><div class="w-full h-full flex flex-col justify-center text-center px-4 sm:px-6 lg:px-8 py-10"><span class="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-2"> Layanan Cepat & Mudah </span><h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-4"> Selamat Datang di Pondok Dukcapil Tapin! 👋 </h2><p class="text-base sm:text-lg text-gray-600 mb-6"> Akses semua layanan digital dan informasi terbaru dengan mudah. Kami siap melayani Anda. </p><div class="flex justify-center"><img src="/images/bupati_wakil.png" alt="Ilustrasi Selamat Datang" class="w-full max-w-3xl h-auto object-contain rounded-lg transform hover:scale-[1.02] transition duration-300 ease-in-out" style="max-height: 80vh;" ></div></div></main>`
+        html: `<main class="flex flex-col items-center justify-center min-h-screen bg-yellow-200 px-4 sm:px-6 lg:px-8 py-10"><div class="flex flex-col justify-center text-center w-full max-w-6xl mx-auto"><span class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-blue-600 tracking-wide mb-3"> Layanan Cepat & Mudah </span><h2 class="font-extrabold text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-900 leading-snug mb-4"> Selamat Datang di Pondok Dukcapil Tapin! 👋 </h2><p class="text-sm sm:text-base md:text-lg text-gray-700 mb-8 max-w-3xl mx-auto"> Akses semua layanan digital dan informasi terbaru dengan mudah. Kami siap melayani Anda. </p><div class="flex justify-center w-full"><img src="/images/pejabat.png" alt="Ilustrasi Selamat Datang" class="w-full sm:w-4/5 md:w-3/4 lg:w-2/3 h-auto object-contain rounded-lg transform hover:scale-[1.02] transition duration-300 ease-in-out" style="max-height: 80vh;" ></div></div></main>`
         , showConfirmButton: false
         , timer: 4000
+        , timerProgressBar: true
         , customClass: {
-            popup: 'p-0 !w-screen !h-screen !max-w-none !rounded-none bg-white'
+            popup: 'p-0 !w-screen !h-screen !max-w-none !rounded-none bg-yellow-200'
             , container: '!p-0'
         }
         , backdrop: false
