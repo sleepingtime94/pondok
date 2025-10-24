@@ -12,6 +12,7 @@ if (!function_exists('jadwal_buka')) {
             return true;
         }
 
+        Carbon::setLocale('id');
         $hariIni = Carbon::now()->isoFormat('dddd');
         $jadwal = Jadwal::where('hari', $hariIni)->where('aktif', true)->first();
 
