@@ -38,5 +38,8 @@ class Kernel extends HttpKernel
 
         // Middleware kustom Anda
         'admin.operator' => \App\Http\Middleware\AdminOperatorMiddleware::class,
+
+        // Turnstile
+        'turnstile' => \App\Http\Middleware\VerifyTurnstile::class,
     ];
 }

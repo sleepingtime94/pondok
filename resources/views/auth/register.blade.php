@@ -17,9 +17,9 @@
         </div>
 
         @if(session('success'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4" role="alert">
-                <span class="block sm:inline">{{ session('success') }}</span>
-            </div>
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4" role="alert">
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
         @endif
 
         <form method="POST" action="{{ route('register') }}" class="space-y-5">
@@ -27,139 +27,73 @@
 
             {{-- Input NIK --}}
             <div>
-                <input 
-                    id="nik" 
-                    type="text" 
-                    name="nik" 
-                    placeholder="Masukkan Nomor NIK" 
-                    value="{{ old('nik') }}" 
-                    required 
-                    autofocus 
-                    oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,16)" 
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder:text-gray-400 hover:shadow-md @error('nik') @enderror"
-                >
+                <input id="nik" type="text" name="nik" placeholder="Masukkan Nomor NIK" value="{{ old('nik') }}" required autofocus oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,16)" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder:text-gray-400 hover:shadow-md @error('nik') @enderror">
                 @error('nik')
-                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Input No KK --}}
             <div>
-                <input 
-                    id="kk" 
-                    type="text" 
-                    name="kk" 
-                    placeholder="Masukkan Nomor KK" 
-                    value="{{ old('kk') }}" 
-                    required 
-                    oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,16)" 
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder:text-gray-400 hover:shadow-md @error('kk') @enderror"
-
-                >
+                <input id="kk" type="text" name="kk" placeholder="Masukkan Nomor KK" value="{{ old('kk') }}" required oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,16)" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder:text-gray-400 hover:shadow-md @error('kk') @enderror">
                 @error('kk')
-                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Input Nama Lengkap --}}
             <div>
-                <input 
-                    id="name" 
-                    type="text" 
-                    name="name" 
-                    placeholder="Masukkan Nama Lengkap" 
-                    value="{{ old('name') }}" 
-                    required 
-                    autocomplete="name" 
-                    oninput="this.value = this.value.toUpperCase()" 
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder:text-gray-400 hover:shadow-md @error('name') @enderror"
-                >
+                <input id="name" type="text" name="name" placeholder="Masukkan Nama Lengkap" value="{{ old('name') }}" required autocomplete="name" oninput="this.value = this.value.toUpperCase()" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder:text-gray-400 hover:shadow-md @error('name') @enderror">
                 @error('name')
-                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Dropdown Pilih Kecamatan --}}
             <div>
-                <select 
-                    id="kecamatan" 
-                    name="kecamatan" 
-                    required 
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 @error('kecamatan') @enderror"
-                >
+                <select id="kecamatan" name="kecamatan" required class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 @error('kecamatan') @enderror">
                     <option value="">Pilih Kecamatan</option>
                     @foreach ($kecamatans as $kec)
-                        <option value="{{ $kec->id }}" {{ old('kecamatan') == $kec->id ? 'selected' : '' }}>
-                            {{ $kec->nama }}
-                        </option>
+                    <option value="{{ $kec->id }}" {{ old('kecamatan') == $kec->id ? 'selected' : '' }}>
+                        {{ $kec->nama }}
+                    </option>
                     @endforeach
                 </select>
                 @error('kecamatan')
-                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Dropdown Pilih Desa/Kelurahan --}}
             <div>
-                <select 
-                    id="desa_kelurahan" 
-                    name="desa_kelurahan" 
-                    required 
-                    disabled 
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 @error('desa_kelurahan') @enderror"
-                >
+                <select id="desa_kelurahan" name="desa_kelurahan" required disabled class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 @error('desa_kelurahan') @enderror">
                     <option value="">Pilih Desa/Kelurahan</option>
                 </select>
                 @error('desa_kelurahan')
-                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Input Email --}}
             <div>
-                <input 
-                    id="email" 
-                    type="email" 
-                    name="email" 
-                    placeholder="Masukkan e-Mail" 
-                    value="{{ old('email') }}" 
-                    required 
-                    autocomplete="email" 
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder:text-gray-400 hover:shadow-md @error('email') @enderror"
-                >
+                <input id="email" type="email" name="email" placeholder="Masukkan e-Mail" value="{{ old('email') }}" required autocomplete="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder:text-gray-400 hover:shadow-md @error('email') @enderror">
                 @error('email')
-                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Input No HP --}}
             <div>
-                <input 
-                    id="phone" 
-                    type="text" 
-                    name="phone" 
-                    placeholder="Masukkan Nomor WhatsApp" 
-                    value="{{ old('phone') }}" 
-                    required 
-                    oninput="this.value=this.value.replace(/[^0-9]/g,'')" 
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder:text-gray-400 hover:shadow-md @error('phone') @enderror"
-                    >
+                <input id="phone" type="text" name="phone" placeholder="Masukkan Nomor WhatsApp" value="{{ old('phone') }}" required oninput="this.value=this.value.replace(/[^0-9]/g,'')" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder:text-gray-400 hover:shadow-md @error('phone') @enderror">
                 @error('phone')
-                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Input Password --}}
             <div>
                 <div class="relative">
-                    <input 
-                        id="password" 
-                        type="password" 
-                        name="password" 
-                        placeholder="Password Minimal 8 Digit" 
-                        required 
-                        autocomplete="new-password" 
-                        class="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder:text-gray-400 hover:shadow-md @error('password') @enderror">
+                    <input id="password" type="password" name="password" placeholder="Password Minimal 8 Digit" required autocomplete="new-password" class="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder:text-gray-400 hover:shadow-md @error('password') @enderror">
                     <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500">
                         <svg id="eye-open" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path d="M3.53 2.47a.75.75 0 0 0-1.06 1.06l18 18a.75.75 0 1 0 1.06-1.06l-18-18ZM22.676 12.553a11.249 11.249 0 0 1-2.631 4.31l-3.099-3.099a5.25 5.25 0 0 0-6.71-6.71L7.759 4.577a11.217 11.217 0 0 1 4.242-.827c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113Z" />
@@ -172,22 +106,14 @@
                     </button>
                 </div>
                 @error('password')
-                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Input Konfirmasi Password --}}
             <div>
                 <div class="relative">
-                    <input 
-                        id="password_confirmation" 
-                        type="password" 
-                        name="password_confirmation" 
-                        placeholder="Konfirmasi Password" 
-                        required 
-                        autocomplete="new-password" 
-                        class="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder:text-gray-400 hover:shadow-md"
-                    >
+                    <input id="password_confirmation" type="password" name="password_confirmation" placeholder="Konfirmasi Password" required autocomplete="new-password" class="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder:text-gray-400 hover:shadow-md">
                     <button type="button" id="toggleConfirmPassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500">
                         <svg id="eye-open-confirm" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path d="M3.53 2.47a.75.75 0 0 0-1.06 1.06l18 18a.75.75 0 1 0 1.06-1.06l-18-18ZM22.676 12.553a11.249 11.249 0 0 1-2.631 4.31l-3.099-3.099a5.25 5.25 0 0 0-6.71-6.71L7.759 4.577a11.217 11.217 0 0 1 4.242-.827c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113Z" />
@@ -201,20 +127,18 @@
                 </div>
             </div>
 
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAABlUukFcJ2Ij3GAq" data-size="flexible"></div>
+            <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile.site_key') }}"></div>
             <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
             {{-- Tombol Simpan --}}
             <div class="flex items-center justify-between mt-6 pt-4">
-                <button type="submit"
-                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105 flex items-center gap-2">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105 flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0 1 20.25 6v12A2.25 2.25 0 0 1 18 20.25H6A2.25 2.25 0 0 1 3.75 18V6A2.25 2.25 0 0 1 6 3.75h1.5m9 0h-9" />
                     </svg>
                     Simpan
                 </button>
-                <button type="reset"
-                    class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2.5 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105 flex items-center gap-2">
+                <button type="reset" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2.5 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105 flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
                     </svg>
@@ -298,6 +222,7 @@
         document.getElementById('togglePassword').addEventListener('click', togglePassword);
         document.getElementById('toggleConfirmPassword').addEventListener('click', toggleConfirmPassword);
     });
+
 </script>
 
 @endsection

@@ -33,32 +33,32 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 Route::get('/desa', [LocationController::class, 'getDesa'])->name('get.desa');
 
 // === 2. ROUTE YANG DILINDUNGI JADWAL ===
-    // Homepage
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+// Homepage
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-    // Rute yang memerlukan login
-    Route::middleware(['auth'])->group(function () {
-        Route::get('/account', [AccountController::class, 'index'])->name('account.index');
-        Route::put('/account/password', [AccountController::class, 'updatePassword'])->name('account.password.update');
-        Route::put('/account', [AccountController::class, 'update'])->name('account.update');
-        Route::get('/layanan', [LayananController::class, 'index'])->name('layanan.index');
-        Route::get('/form_pengajuan', [PengajuanController::class, 'showForm']);
-        Route::get('/api/jenis-layanan/filter/{keterangan}', [PengajuanController::class, 'getJenisLayananByKeterangan']);
-        Route::get('/api/pengambilan-dokumen', [PengajuanController::class, 'getPengambilanDokumen'])->name('api.pengambilan.dokumen');
-        Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
-        Route::post('/transaksi/{id_trx}/update-status', [TransaksiController::class, 'updateStatus'])->name('transaksi.updateStatus');
-        Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking.index');
-        Route::get('/tracking/{id_trx}', [TrackingController::class, 'show'])->name('tracking.show');
-        Route::get('/pengajuan-ulang/{id_trx}', [PengajuanUlangController::class, 'showForm'])->name('pengajuan.ulang.form');
-        Route::post('/pengajuan-ulang/{id_trx}', [PengajuanUlangController::class, 'submitForm'])->name('pengajuan.ulang.submit');
-        Route::delete('/api/hapus-file/{id}', [PengajuanUlangController::class, 'hapusFile'])->name('pengajuan.ulang.hapus.file');
-    });
+// Rute yang memerlukan login
+Route::middleware(['auth'])->group(function () {
+    Route::get('/account', [AccountController::class, 'index'])->name('account.index');
+    Route::put('/account/password', [AccountController::class, 'updatePassword'])->name('account.password.update');
+    Route::put('/account', [AccountController::class, 'update'])->name('account.update');
+    Route::get('/layanan', [LayananController::class, 'index'])->name('layanan.index');
+    Route::get('/form_pengajuan', [PengajuanController::class, 'showForm']);
+    Route::get('/api/jenis-layanan/filter/{keterangan}', [PengajuanController::class, 'getJenisLayananByKeterangan']);
+    Route::get('/api/pengambilan-dokumen', [PengajuanController::class, 'getPengambilanDokumen'])->name('api.pengambilan.dokumen');
+    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+    Route::post('/transaksi/{id_trx}/update-status', [TransaksiController::class, 'updateStatus'])->name('transaksi.updateStatus');
+    Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking.index');
+    Route::get('/tracking/{id_trx}', [TrackingController::class, 'show'])->name('tracking.show');
+    Route::get('/pengajuan-ulang/{id_trx}', [PengajuanUlangController::class, 'showForm'])->name('pengajuan.ulang.form');
+    Route::post('/pengajuan-ulang/{id_trx}', [PengajuanUlangController::class, 'submitForm'])->name('pengajuan.ulang.submit');
+    Route::delete('/api/hapus-file/{id}', [PengajuanUlangController::class, 'hapusFile'])->name('pengajuan.ulang.hapus.file');
+});
 
-    // Rute publik yang dilindungi jadwal (tidak perlu login)
-    Route::post('/submit-pengajuan', [PengajuanController::class, 'submitForm']);
-    Route::post('/konfirmasi/{id}', [TransaksiController::class, 'konfirmasi'])->name('api.konfirmasi');
-    Route::post('/api/nilai/{id}', [TransaksiController::class, 'submitRating'])->name('api.nilai');
-    Route::post('/api/komplain/{id_trx}', [KomplainController::class, 'store'])->name('komplain.store');
+// Rute publik yang dilindungi jadwal (tidak perlu login)
+Route::post('/submit-pengajuan', [PengajuanController::class, 'submitForm']);
+Route::post('/konfirmasi/{id}', [TransaksiController::class, 'konfirmasi'])->name('api.konfirmasi');
+Route::post('/api/nilai/{id}', [TransaksiController::class, 'submitRating'])->name('api.nilai');
+Route::post('/api/komplain/{id_trx}', [KomplainController::class, 'store'])->name('komplain.store');
 
 // === 3. RUTE ADMIN (TIDAK TERKENA JADWAL) ===
 Route::middleware(['auth'])->group(function () {

@@ -47,12 +47,8 @@
                 @enderror
             </div>
 
+            <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile.site_key') }}"></div>
             <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-            <div class="cf-turnstile" data-sitekey="{{ config('services.turnstile.key') }}" data-theme="light">
-            </div>
-
-            <input type="hidden" name="turnstileToken" id="turnstileToken">
 
             <div class="flex flex-col sm:flex-row items-center justify-between mt-6">
                 <button type="submit" class="w-full sm:w-auto flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-200 shadow-md transform transition-transform duration-300 hover:scale-105">
@@ -78,14 +74,6 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        window.onloadTurnstileCallback = function() {
-            turnstile.render('.cf-turnstile', {
-                sitekey: "{{ config('services.turnstile.key') }}"
-                , callback: function(token) {
-                    document.getElementById('turnstileToken').value = token;
-                }
-            , });
-        };
 
         const passwordInput = document.getElementById('password');
         const togglePasswordBtn = document.getElementById('togglePassword');
