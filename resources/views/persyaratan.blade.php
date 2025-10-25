@@ -18,6 +18,7 @@
         </div>
 
         <!-- Alpine.js: Kelola state semua grup dan akordion -->
+
         <div
             x-data="{
                 openGroup: null,
@@ -45,16 +46,16 @@
                 <div class="border border-white/50 rounded-xl overflow-hidden shadow-lg bg-white/50 backdrop-blur-sm">
                     <!-- Header Grup -->
                     <button
-                        class="w-full flex justify-between items-center p-4 text-left bg-blue-50 hover:bg-blue-100 focus:outline-none transition-colors"
+                        class="w-full flex justify-between items-center p-4 text-left hover:bg-blue-50 focus:outline-none transition-colors"
                         @click="toggleGroup('{{ $groupSlug }}')"
                         :aria-expanded="isGroupOpen('{{ $groupSlug }}')"
                     >
-                        <span class="font-semibold text-blue-800 flex items-center gap-2">
+                        <span class="font-semibold text-gray-800 flex items-center gap-2">
                             {!! $items->icon_svg !!}
                             {{ $items->nama_lengkap }}
                         </span>
                         <svg
-                            class="w-5 h-5 text-blue-600 transition-transform duration-200"
+                            class="w-5 h-5 text-gray-600 transition-transform duration-200"
                             :class="{ 'rotate-180': isGroupOpen('{{ $groupSlug }}') }"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         >
@@ -82,11 +83,7 @@
                                     <span class="flex items-center gap-2 text-gray-800">
                                         @php
                                             $itemIcon = match(true) {
-                                                str_contains(strtolower($item->nama), 'baru') => '<svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 6h-6"></path></svg>',
-                                                str_contains(strtolower($item->nama), 'hilang') || str_contains(strtolower($item->nama), 'rusak') => '<svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M12 17h.01M12 12h.01M12 7h.01M12 19h.01"></path></svg>',
-                                                str_contains(strtolower($item->nama), 'perubahan') => '<svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-5L20 14M16 10a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>',
-                                                str_contains(strtolower($item->nama), 'pisah') => '<svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5"></path></svg>',
-                                                default => '<svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h2v2a2 2 0 002 2h2a2 2 0 002-2v-2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 002 2h2a2 2 0 002-2z"></path></svg>',
+                                                default => '<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4"/></svg>',
                                             };
                                         @endphp
                                         {!! $itemIcon !!}
@@ -104,8 +101,14 @@
                                 <!-- Konten Persyaratan -->
                                 <div
                                     x-show="isAccordionOpen('{{ $accordionSlug }}')"
-                                    x-collapse
-                                    class="px-4 pb-3 pt-2 bg-white/70 backdrop-blur-md rounded-md"
+                                    x-transition:enter="transition ease-out duration-300"
+                                    x-transition:enter-start="opacity-0 scale-y-95"
+                                    x-transition:enter-end="opacity-100 scale-y-100"
+                                    x-transition:leave="transition ease-in duration-200"
+                                    x-transition:leave-start="opacity-100 scale-y-100"
+                                    x-transition:leave-end="opacity-0 scale-y-95"
+                                    class="overflow-hidden px-4 pb-3 pt-2 bg-white/70 rounded-md origin-top"
+                                    style="will-change: transform, opacity;"
                                 >
                                     <!-- @if($item->keterangan)
                                         <p class="mb-3 text-gray-700 text-sm leading-relaxed">
