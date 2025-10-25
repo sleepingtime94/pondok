@@ -1,12 +1,15 @@
 @extends('layouts.app')
 @section('content')
+
 <a href="{{ route('tracking.index') }}" class="absolute top-4 left-4 text-gray-600 hover:text-blue-600 !important transition-colors duration-300">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
     </svg>
 </a>
+
 <div class="max-w-4xl mx-auto p-4 pb-20">
     <h1 class="text-2xl font-bold mb-6 text-center text-gray-800">Tracking Permohonan</h1>
+
     {{-- Menampilkan ID Pesanan yang sedang dilacak --}}
     <div class="bg-gray-100 rounded-lg p-4 mb-6 text-center shadow-sm">
         <span class="font-bold text-blue-800">ID : {{ $transaksi->id_trx }}</span>
@@ -16,6 +19,7 @@
             </span>
         @endif
     </div>
+
     <div class="bg-white rounded-lg shadow-xl p-6">
         {{-- Cek apakah ada data transaksi --}}
         @if ($transaksi)
@@ -198,7 +202,6 @@
                             </svg>
                             Cek Berkas
                         </button>
-
                         <!-- Tombol Konfirmasi -->
                         <button type="button" id="konfirmasi-button"
                                 class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg flex items-center justify-center transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
@@ -207,7 +210,6 @@
                             </svg>
                             Konfirmasi
                         </button>
-
                         <!-- Tombol Komplain -->
                         <button 
                             type="button" 
@@ -223,7 +225,6 @@
                             </svg>
                             Komplain
                         </button>
-
                         <!-- Tombol Nilai Kami -->
                         <button 
                             type="button" 
@@ -237,6 +238,7 @@
                     </div>
                 </div>
             @endif
+
         @else
             {{-- Tampilan jika tidak ada data tracking --}}
             <div class="text-center p-8 text-gray-500">
@@ -249,7 +251,7 @@
 
 <!-- Modal Konfirmasi -->
 <div id="konfirmasi-modal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
@@ -287,7 +289,7 @@
 
 <!-- Modal Komplain -->
 <div id="komplain-modal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
@@ -326,6 +328,7 @@
 <!-- Modal Cek Berkas (Ukuran Besar - Inline CSS) -->
 <div id="cek-berkas-modal" style="position: fixed; inset: 0; z-index: 50; display: none; overflow-y: auto; background-color: rgba(0,0,0,0.5);">
     <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px;">
+    {{-- <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">     --}}
         <div style="background: white; border-radius: 0.5rem; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); width: 90vw; height: 80vh; display: flex; flex-direction: column;">
             <div style="padding: 1.5rem; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center;">
                 <h3 style="font-size: 1.125rem; font-weight: 600; color: #1f2937;">📄 Dokumen Cek</h3>
@@ -347,9 +350,9 @@
     </div>
 </div>
 
-<!-- ✅ MODAL NILAI KAMI (DIPINDAHKAN KE SINI - LUAR SEMUA BLOK) -->
+<!-- Modal Nilai Kami -->
 <div id="nilai-modal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
@@ -416,22 +419,26 @@
 
 @push('scripts')
 <script>
+// Pastikan DOM sudah siap
 document.addEventListener('DOMContentLoaded', function() {
     // === FITUR: CEK BERKAS (Modal Inline CSS) ===
     const cekBerkasButton = document.getElementById('cek-berkas-btn');
     const cekBerkasModal = document.getElementById('cek-berkas-modal');
     const cekBerkasCancel = document.getElementById('cek-berkas-cancel');
+
     if (cekBerkasButton && cekBerkasModal) {
         cekBerkasButton.addEventListener('click', () => {
             // Ambil dokumen petugas
             const userDokumen = @json($transaksi->userDokumen);
             const pdfContainer = document.getElementById('pdf-preview-container');
+            
             if (userDokumen.length > 0) {
                 let html = '<div style="height: 100%; overflow-y: auto; padding: 16px;">';
                 userDokumen.forEach((dokumen, index) => {
                     const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
                     const src = "{{ url('/dokumen') }}/" + dokumen.file_path + "#toolbar=0";
                     let viewer;
+                    
                     if (isMobile) {
                         // Di mobile, gunakan iframe (lebih kompatibel)
                         viewer = `
@@ -453,6 +460,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </object>
                         `;
                     }
+                    
                     html += `
                         <div style="border: 1px solid #e5e7eb; border-radius: 0.375rem; padding: 8px; margin-bottom: 16px;">
                             <h6 style="font-weight: 600; color: #1f2937; font-size: 0.875rem; margin-bottom: 8px;">
@@ -464,6 +472,63 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 html += '</div>';
                 pdfContainer.innerHTML = html;
+
+                // === CEGAH KLIK KANAN & PRINT ===
+                // 1. Cegah klik kanan di seluruh halaman (opsional, tapi bisa mengganggu UX)
+                // document.addEventListener('contextmenu', e => e.preventDefault());
+
+                // 2. Cegah Ctrl+P, Ctrl+S, Ctrl+U, dll.
+                document.addEventListener('keydown', function(e) {
+                    if (e.ctrlKey || e.metaKey) {
+                        switch (e.key.toLowerCase()) {
+                            case 'p': // Print
+                            case 's': // Save
+                            case 'u': // View source
+                                e.preventDefault();
+                                return false;
+                        }
+                    }
+                    // Cegah F12
+                    if (e.key === 'F12') {
+                        e.preventDefault();
+                    }
+                });
+
+                // 3. Cegah klik kanan pada iframe/object yang baru saja dibuat
+                const iframes = pdfContainer.querySelectorAll('iframe');
+                const objects = pdfContainer.querySelectorAll('object');
+
+                const preventRightClick = (event) => {
+                    event.preventDefault();
+                    return false;
+                };
+
+                // Terapkan ke semua iframe
+                iframes.forEach(iframe => {
+                    // Coba cegah klik kanan langsung di iframe
+                    iframe.addEventListener('contextmenu', preventRightClick);
+                    iframe.addEventListener('dragstart', preventRightClick);
+
+                    // Jika iframe dari domain yang sama, coba akses kontennya
+                    iframe.onload = function() {
+                        try {
+                            const doc = iframe.contentDocument || iframe.contentWindow.document;
+                            if (doc) {
+                                doc.addEventListener('contextmenu', preventRightClick);
+                            }
+                        } catch (err) {
+                            // Gagal karena cross-origin — ini normal
+                            console.warn('Tidak bisa mengakses konten iframe (cross-origin).');
+                        }
+                    };
+                });
+
+                // Terapkan ke semua object (fallback untuk desktop)
+                objects.forEach(obj => {
+                    obj.addEventListener('contextmenu', preventRightClick);
+                    obj.addEventListener('dragstart', preventRightClick);
+                });
+
             } else {
                 pdfContainer.innerHTML = `
                     <div style="display: flex; align-items: center; justify-content: center; height: 100%; text-align: center; padding: 16px;">
@@ -474,14 +539,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
             }
+
             cekBerkasModal.style.display = 'block';
         });
     }
+
     if (cekBerkasCancel && cekBerkasModal) {
         cekBerkasCancel.addEventListener('click', () => {
             cekBerkasModal.style.display = 'none';
         });
     }
+
     // Tutup modal jika klik di luar
     if (cekBerkasModal) {
         cekBerkasModal.addEventListener('click', (e) => {
@@ -491,21 +559,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+
     // === FITUR: KONFIRMASI ===
     const konfirmasiButton = document.getElementById('konfirmasi-button');
     const konfirmasiModal = document.getElementById('konfirmasi-modal');
     const konfirmasiSubmit = document.getElementById('konfirmasi-submit');
     const konfirmasiCancel = document.getElementById('konfirmasi-cancel');
+
     if (konfirmasiButton && konfirmasiModal) {
         konfirmasiButton.addEventListener('click', () => {
             konfirmasiModal.classList.remove('hidden');
         });
     }
+
     if (konfirmasiCancel && konfirmasiModal) {
         konfirmasiCancel.addEventListener('click', () => {
             konfirmasiModal.classList.add('hidden');
         });
     }
+
     if (konfirmasiSubmit) {
         konfirmasiSubmit.addEventListener('click', () => {
             Swal.fire({
@@ -516,6 +588,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     Swal.showLoading();
                 }
             });
+
             fetch(`/konfirmasi/{{ $transaksi->id_trx }}`, {
                 method: 'POST',
                 headers: {
@@ -571,8 +644,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Helper function untuk menampilkan modal error Oops...
     function showErrorModal(message) {
-        // Asumsi Anda memiliki fungsi atau cara untuk menampilkan modal Oops... seperti di gambar
-        // Jika tidak, kita gunakan Swal.fire
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -584,7 +655,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fungsi untuk menangani respons yang mungkin bukan JSON saat status non-OK
     async function handleJsonError(response) {
         const contentType = response.headers.get("content-type");
-        
         // Cek apakah respons adalah JSON (walaupun statusnya error)
         if (contentType && contentType.includes("application/json")) {
             // Coba parsing JSON untuk mendapatkan pesan error dari API
@@ -592,9 +662,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Melemparkan error dengan pesan dari server jika ada, atau pesan default
             throw new Error(errorData.message || 'Permintaan gagal. Status: ' + response.status);
         } 
-        
         // Jika respons bukan JSON (kemungkinan HTML dari 404/500), lemparkan error umum
-        // Ini adalah bagian kunci yang mengatasi error "Unexpected token '<'"
         throw new Error('Terjadi kesalahan teknis. Cek koneksi atau URL API.');
     }
 
@@ -614,7 +682,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (komplainSubmit && komplainText) {
         komplainSubmit.addEventListener('click', () => {
             const alasan = komplainText.value.trim();
-            
             if (!alasan) {
                 Swal.fire({
                     icon: 'warning',
@@ -631,12 +698,11 @@ document.addEventListener('DOMContentLoaded', function() {
             fetch(`{{ route('komplain.store', $transaksi->id_trx) }}`, {
                 method: 'POST',
                 headers: {
-                    // Pastikan Anda telah menambahkan <meta name="csrf-token" content="{{ csrf_token() }}"> di layout.app
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'), 
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ 
-                    alasan: alasan, // Pastikan di Controller Laravel Anda, Anda mengambil 'alasan'
+                    alasan: alasan,
                     id_trx: '{{ $transaksi->id_trx }}' 
                 })
             })
@@ -653,22 +719,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Re-enable tombol
                 komplainSubmit.disabled = false;
                 
-                // Logika Sukses (Jika server mengembalikan {success: true})
+                // Logika Sukses
                 if (data.success) {
-                    // Sembunyikan modal komplain
                     komplainModal.classList.add('hidden'); 
-
                     Swal.fire({
                         icon: 'success',
                         title: 'Komplain Terkirim!',
                         text: data.message || 'Terima kasih atas laporan Anda.',
                         confirmButtonText: 'OK'
                     }).then(() => {
-                        // Refresh halaman setelah sukses
                         window.location.reload(); 
                     });
                 } else {
-                    // Logika Gagal (Jika server mengembalikan {success: false})
+                    // Logika Gagal
                     komplainModal.classList.add('hidden'); 
                     Swal.fire({
                         icon: 'error',
@@ -681,7 +744,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => {
                 // Re-enable tombol
                 komplainSubmit.disabled = false;
-                // Tangani error jaringan, error parsing JSON, atau error yang dilempar dari handleJsonError
                 console.error('Error saat komplain:', error);
                 komplainModal.classList.add('hidden'); 
                 showErrorModal(error.message || 'Terjadi kesalahan teknis.');
@@ -689,20 +751,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // === FITUR: NILAI KAMI (UPDATE) ===
+    // === FITUR: NILAI KAMI ===
     const nilaiButton = document.getElementById('nilai-button');
     const nilaiModal = document.getElementById('nilai-modal');
     const nilaiSubmit = document.getElementById('nilai-submit');
     const nilaiCancel = document.getElementById('nilai-cancel');
     const ratingInputs = document.querySelectorAll('input[name="rating"]');
     const commentInput = document.getElementById('comment');
-    const ratingLabel = document.getElementById('rating-label'); // Teks deskripsi
+    const ratingLabel = document.getElementById('rating-label');
 
     // Fungsi update tampilan bintang dan label
     function updateRatingDisplay() {
         const selected = document.querySelector('input[name="rating"]:checked');
         const stars = document.querySelectorAll('.star');
-
         stars.forEach((star, index) => {
             if (selected && index < parseInt(selected.value)) {
                 star.classList.remove('text-gray-300');
@@ -712,7 +773,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 star.classList.add('text-gray-300');
             }
         });
-
         if (selected) {
             const ratingValue = parseInt(selected.value);
             let labelText = '';
@@ -762,7 +822,6 @@ document.addEventListener('DOMContentLoaded', function() {
         nilaiSubmit.addEventListener('click', () => {
             const selectedRating = document.querySelector('input[name="rating"]:checked');
             const comment = commentInput ? commentInput.value.trim() : '';
-
             if (!selectedRating) {
                 Swal.fire({
                     icon: 'warning',
@@ -849,4 +908,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 @endpush
+
 @endsection

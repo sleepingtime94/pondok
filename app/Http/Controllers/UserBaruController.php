@@ -22,22 +22,19 @@ class UserBaruController extends Controller
         $phone = $request->input('phone');
         $reason = $request->input('reason');
 
-
         try {
             switch ($action) {
                 case 'activate':
                     $otp = \App\Helpers\generateOtp(6);
-
                     $user->update([
                         'active' => 1,
                         'activation_code' => $otp,
                         'activation_code_expires_at' => now()->addMinutes(10),
                     ]);
 
-                    // Notifikasi WA akun diterima
+                    // ✅ Notifikasi WA akun diterima
                     $message = "Pendaftaran akun berhasil, silahkan login dan akses menu layanan.\n\n_https://pondok.dukcapil.tapinkab.go.id_";
                     $this->sendWhatsapp($phone, $message);
-
 
                     return response()->json(['message' => 'User berhasil diaktifkan!']);
                     break;
@@ -50,29 +47,25 @@ class UserBaruController extends Controller
                         'kk' => 'nullable|string|max:255',
                         'phone' => 'nullable|string|max:255',
                     ]);
-
                     $user->update($validated);
+
                     return response()->json(['message' => 'Data user berhasil diperbarui!']);
                     break;
 
                 case 'reject':
-                    $reason = $request->input('reason');
-                    // Opsional: simpan alasan ke log atau kolom tambahan
-                    // $user->delete(); // atau update status jadi 'rejected'
-                    $user->update(['active' => 0]);
-
-                    // Notifikasi WA akun ditolak
-                    $message = "Pendaftaran akun ditolak, alasan: {$reason}\n\n_https://pondok.dukcapil.tapinkab.go.id_";
+                    // ✅ Notifikasi WA sebelum dihapus
+                    $message = "Pendaftaran akun ditolak.\nAlasan: {$reason}\n\nSilakan daftar kembali melalui:\n_https://pondok.dukcapil.tapinkab.go.id_";
                     $this->sendWhatsapp($phone, $message);
 
-                    return response()->json(['message' => 'Pendaftaran akun ditolak!']);
+                    // ✅ Hapus akun setelah 
+                    $user->forceDelete();
+
+                    return response()->json(['message' => 'Pendaftaran akun ditolak dan akun telah dihapus!']);
                     break;
 
                 default:
                     return response()->json(['message' => 'Aksi tidak valid'], 400);
             }
-
-            return response()->json(['message' => $message]);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Gagal: ' . $e->getMessage()], 500);
         }

@@ -51,12 +51,13 @@ class RegisterController extends Controller
             // Buat instance user baru dan kirim event Registered
             event(new Registered($user = $this->create($request->all())));
 
-            // Login user yang baru terdaftar
-            Auth::login($user);
-
-            // Redirect ke halaman yang dituju dengan pesan sukses
-            return redirect()->intended('/')->with('success', 'Akun berhasil dibuat!');
-
+            if ($user->active == 0) {
+                return redirect('/login')->with('swal', [
+                    'title' => 'Registrasi Berhasil!',
+                    'text' => 'Akun Anda berhasil dibuat. Tunggu verifikasi admin sebelum bisa login.',
+                    'icon' => 'success'
+                ]);
+            }
         } catch (ValidationException $e) {
             // Tangani error validasi
             return back()->withErrors($e->validator)->withInput();
