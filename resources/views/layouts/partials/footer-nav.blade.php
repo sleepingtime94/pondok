@@ -46,7 +46,7 @@
 
         {{-- ⭐️ Logo di tengah: MODIFIKASI DIMULAI DI SINI ⭐️ --}}
         <a href="#" class="flex flex-col items-center 
-            bg-white 
+            bg-black 
             -mt-8           /* Menarik ke atas */
             w-16 h-16       /* MEMBESARKAN lingkaran (width dan height) */
             rounded-full 
