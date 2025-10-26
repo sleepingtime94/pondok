@@ -312,7 +312,7 @@
             if (kedatanganLink) {
                 kedatanganLink.addEventListener('click', function(e) {
                     e.preventDefault();
-                    window.location.href = '/form_pengajuan?keterangan=datang&judul=Kedatangan%20Luar%20Daerah&icon=kedatangan.png';
+                    window.location.href = '/form_pengajuan?keterangan=DTG&judul=Kedatangan%20Luar%20Daerah&icon=kedatangan.png';
                 });
             }
             @endguest
@@ -359,8 +359,8 @@
 
 @push('scripts')
 <script>
-Swal.fire({
-    html: `
+    Swal.fire({
+        html: `
     <main class="relative w-screen h-screen overflow-hidden m-0 p-0">
         <!-- Gambar background -->
         <div class="absolute inset-0">
@@ -393,29 +393,30 @@ Swal.fire({
             </div>
         </div>
     </main>
-    `,
-    showConfirmButton: false,
-    timer: 4000,
-    timerProgressBar: true,
-    customClass: {
-        popup: '!p-0 !m-0 !w-screen !h-screen !max-w-none !rounded-none bg-transparent',
-        container: '!p-0 !m-0 !w-screen !h-screen !max-w-none',
-        htmlContainer: '!p-0 !m-0 !h-full !w-full flex'
-    },
-    backdrop: false,
-    didOpen: () => {
-        // Hilangkan style bawaan SweetAlert yang membatasi ukuran
-        const swalHtml = document.querySelector('.swal2-html-container');
-        if (swalHtml) {
-            swalHtml.style.padding = '0';
-            swalHtml.style.margin = '0';
-            swalHtml.style.height = '100%';
-            swalHtml.style.width = '100%';
-            swalHtml.style.display = 'flex';
-            swalHtml.style.alignItems = 'stretch';
+    `
+        , showConfirmButton: false
+        , timer: 4000
+        , timerProgressBar: true
+        , customClass: {
+            popup: '!p-0 !m-0 !w-screen !h-screen !max-w-none !rounded-none bg-transparent'
+            , container: '!p-0 !m-0 !w-screen !h-screen !max-w-none'
+            , htmlContainer: '!p-0 !m-0 !h-full !w-full flex'
         }
-    }
-});
+        , backdrop: false
+        , didOpen: () => {
+            // Hilangkan style bawaan SweetAlert yang membatasi ukuran
+            const swalHtml = document.querySelector('.swal2-html-container');
+            if (swalHtml) {
+                swalHtml.style.padding = '0';
+                swalHtml.style.margin = '0';
+                swalHtml.style.height = '100%';
+                swalHtml.style.width = '100%';
+                swalHtml.style.display = 'flex';
+                swalHtml.style.alignItems = 'stretch';
+            }
+        }
+    });
+
 </script>
 
 @if(session('success'))
