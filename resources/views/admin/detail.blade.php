@@ -104,13 +104,13 @@
                 @foreach($transaksi->files as $file)
                     <div class="col-md-3 col-sm-6 mb-3">
                         <div class="card shadow-sm border">
-                            <a href="{{ asset($file->file) }}" target="_blank" class="d-block">
-                                <img src="{{ asset($file->file) }}" 
-                                    alt="Dokumen {{ $loop->index + 1 }}" 
-                                    class="img-fluid w-100"
-                                    onerror="this.src='{{ asset('dist/img/default-150x150.png') }}'"
-                                    style="height: 150px; object-fit: contain; object-position: center; border-radius: 4px;">
-                            </a>
+                        <a href="{{ Storage::url($file->file) }}" target="_blank" class="d-block">
+                            <img src="{{ Storage::url($file->file) }}" 
+                                alt="Dokumen {{ $loop->index + 1 }}" 
+                                class="img-fluid w-100"
+                                onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiB2aWV3Qm94PSIwIDAgMTUwIDE1MCI+PHJlY3Qgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiM3NzciLz48dGV4dCB4PSI3NSIgeT0iODAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+PC90ZXh0Pjwvc3ZnPg=='"
+                                style="height: 150px; object-fit: contain; object-position: center; border-radius: 4px;">
+                        </a>
                             <div class="card-body p-2 text-center">
                                 <small class="text-muted d-block">{{ Str::limit(basename($file->file), 25) }}</small>
                             </div>

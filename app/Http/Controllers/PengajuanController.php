@@ -120,16 +120,11 @@ class PengajuanController extends Controller
             Log::info('Transaksi berhasil disimpan dengan ID:', ['id_trx' => $idTrx]);
 
             // Simpan file...
-            if ($request->has('file_pendukung')) { // Gunakan has() untuk array file
+            if ($request->hasFile('file_pendukung')) {
                 foreach ($request->file('file_pendukung') as $file) {
-                    if ($file) { // Pastikan file tidak null
-                        $filename = time() . '_' . $file->getClientOriginalName();
-                        // Gunakan put() agar tidak perlu menentukan disk setiap kali jika 'public' adalah default
-                        // $path = $file->storeAs('uploads', $filename, 'public'); 
-                        // ✅ Simpan langsung di public/uploads (tanpa symlink)
-                        $destinationPath = public_path('uploads');
-                        $file->move($destinationPath, $filename);
-                        $path = 'uploads/' . $filename;
+                    if ($file && $file->isValid()) {
+                        // ✅ Simpan ke storage/app/public/uploads
+                        $path = $file->store('uploads', 'public'); // hasil: "uploads/namafile.jpg"
 
                         UserSyarat::create([
                             'id_trx' => $idTrx,
