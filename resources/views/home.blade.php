@@ -55,7 +55,7 @@
                 <img src="{{ asset('icon/syarat1.png') }}" alt="Persyaratan" class="h-8 w-8 object-contain">
                 <span class="text-xs text-center font-bold mb-2 text-gray-700">Syarat</span>
             </a>
-            <a href="#" class="flex flex-col items-center justify-center space-y-1 transform transition duration-100 hover:scale-105">
+            <a href="https://files.dukcapil.tapinkab.go.id/tutorial-pondok.pdf" target="_blank" class="flex flex-col items-center justify-center space-y-1 transform transition duration-100 hover:scale-105">
                 <img src="{{ asset('icon/Tutorial1.png') }}" alt="Tutorial" class="h-8 w-8 object-contain">
                 <span class="text-xs text-center font-bold mb-2 text-gray-700">Tutorial</span>
             </a>
@@ -162,21 +162,11 @@
 
 {{-- HTML MODAL LOGIN - ID: login-modal --}}
 <div id="login-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
-
-    {{-- Container untuk pemusatan penuh --}}
-    {{-- Menggunakan min-h-full dan menghapus kelas responsif yang berpotensi memecahkan pemusatan Flexbox --}}
     <div class="flex items-center justify-center min-h-full px-4 py-6 text-center">
-
-        {{-- BackDrop (Lapisan Abu-abu Transparan) --}}
-        {{-- Z-index disetel ke 40 (lebih rendah dari konten modal) --}}
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity z-40" aria-hidden="true"></div>
-
-        {{-- Kotak Konten Modal (Kotak Putih) --}}
-        {{-- Z-index disetel ke 50 (paling atas) --}}
         <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl 
                     transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6 
                     relative z-50">
-
             <div class="sm:flex sm:items-start">
                 <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-blue-600">
