@@ -99,7 +99,8 @@
                 <tbody>
                     @forelse($users as $user)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            {{-- <td>{{ $loop->iteration }}</td> --}}
+                            <td>{{ $users->firstItem() + $loop->index }}</td>
                             <td>{{ $user->nik }}</td>
                             <td>{{ $user->kk }}</td>
                             <td>{{ $user->name }}</td>

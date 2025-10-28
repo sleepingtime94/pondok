@@ -13,6 +13,20 @@
             @if($users->isEmpty())
             <div class="alert alert-info">Tidak ada user baru.</div>
             @else
+            <div class="mb-3">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <label>Show</label>
+                        <select onchange="location = this.value;" class="form-control d-inline-block w-auto ml-2">
+                            <option value="{{ route('admin.user.index', array_merge(request()->all(), ['per_page' => 10])) }}" {{ request('per_page') == 10 ? 'selected' : '' }}>10</option>
+                            <option value="{{ route('admin.user.index', array_merge(request()->all(), ['per_page' => 25])) }}" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
+                            <option value="{{ route('admin.user.index', array_merge(request()->all(), ['per_page' => 50])) }}" {{ request('per_page') == 50 ? 'selected' : '' }}>50</option>
+                        </select>
+                        <span class="ml-2">records</span>
+                    </div>
+                </div>
+            </div>
+            
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -43,6 +57,15 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div>
+                    Showing {{ $users->firstItem() }} to {{ $users->lastItem() }} of {{ $users->total() }} results
+                </div>
+                <div>
+                    {{ $users->appends(request()->query())->links('pagination::bootstrap-4') }}
+                </div>
+            </div>
 
             <!-- Modal Detail -->
             <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">

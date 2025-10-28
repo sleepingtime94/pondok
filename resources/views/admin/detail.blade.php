@@ -44,6 +44,11 @@
                                 <td>:</td>
                                 <td>{{ $transaksi->jenisPelayanan->nama ?? 'Lainnya' }}</td>
                             </tr>
+                            <tr>
+                                <td><strong>Phone / Email</strong></td>
+                                <td>:</td>
+                                <td>{{ $transaksi->user?->phone ?? '-' }} / {{ $transaksi->user?->email ?? '-' }}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -85,6 +90,11 @@
                                 <td><strong>Pengambilan</strong></td>
                                 <td>:</td>
                                 <td>{{ $transaksi->pengambilan->nama ?? '-' }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pesan Penolakan</strong></td>
+                                <td>:</td>
+                                <td>{{ $transaksi->pesan ?? '-' }}</td>
                             </tr>
                         </tbody>
                     </table>

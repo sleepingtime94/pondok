@@ -65,6 +65,20 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
+            <div class="mb-3">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <label>Show</label>
+                        <select onchange="location = this.value;" class="form-control d-inline-block w-auto ml-2">
+                            <option value="{{ route('admin.transaksi.index', array_merge(request()->all(), ['per_page' => 10])) }}" {{ request('per_page') == 10 ? 'selected' : '' }}>10</option>
+                            <option value="{{ route('admin.transaksi.index', array_merge(request()->all(), ['per_page' => 25])) }}" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
+                            <option value="{{ route('admin.transaksi.index', array_merge(request()->all(), ['per_page' => 50])) }}" {{ request('per_page') == 50 ? 'selected' : '' }}>50</option>
+                        </select>
+                        <span class="ml-2">records</span>
+                    </div>
+                </div>
+            </div>
+
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -114,7 +128,17 @@
             </table>
 
             {{ $transaksis->appends(request()->query())->links() }}
+                        <!-- Pagination -->
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div>
+                    Showing {{ $transaksis->firstItem() }} to {{ $transaksis->lastItem() }} of {{ $transaksis->total() }} results
+                </div>
+                <div>
+                    {{ $transaksis->appends(request()->query())->links('pagination::bootstrap-4') }}
+                </div>
+            </div>
         </div>
+        
     </div>
 </div>
 @endsection
