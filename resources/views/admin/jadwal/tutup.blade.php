@@ -18,6 +18,7 @@
             align-items: center;
             padding: 20px;
         }
+
         .container {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -27,45 +28,54 @@
             max-width: 600px;
             width: 100%;
         }
+
         h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
         }
+
         p {
             font-size: 1.2em;
             margin-bottom: 20px;
         }
+
         .countdown {
             display: flex;
             justify-content: center;
             gap: 10px;
             margin: 20px 0;
         }
+
         .countdown-box {
             background: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             padding: 10px;
             min-width: 60px;
         }
+
         .countdown-box span {
             display: block;
             font-size: 1.5em;
             font-weight: bold;
         }
+
         .countdown-box small {
             font-size: 0.8em;
         }
+
         .maintenance {
             margin-top: 30px;
             padding: 20px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
         }
+
         .maintenance svg {
             width: 40px;
             height: 40px;
             margin-bottom: 10px;
         }
+
     </style>
 </head>
 <body>
@@ -107,7 +117,9 @@
         // Hitung waktu sampai buka kembali
         function hitungWaktu() {
             const now = new Date();
-            const hariIni = now.toLocaleDateString('id-ID', { weekday: 'long' });
+            const hariIni = now.toLocaleDateString('id-ID', {
+                weekday: 'long'
+            });
 
             let nextOpen = new Date(now);
             nextOpen.setHours(7, 30, 0, 0); // Jam buka default
@@ -117,8 +129,8 @@
                 const hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                 const indexHariIni = hari.indexOf(hariIni);
 
-                for (let i = 1; i <= 7; i++) {
-                    const index = (indexHariIni + i) % 7;
+                for (let i = 1; i <= 2; i++) {
+                    const index = (indexHariIni + i) % 2;
                     const hariBerikutnya = hari[index];
 
                     // Ganti dengan logika ambil dari database jika Anda punya API
@@ -143,6 +155,7 @@
 
         setInterval(hitungWaktu, 1000);
         hitungWaktu();
+
     </script>
 </body>
 </html>
