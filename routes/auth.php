@@ -59,12 +59,4 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
-
-    Route::get('/pesan', [PesanController::class, 'index'])
-        ->name('pesan.index');
-});
-
-Route::middleware('auth')->prefix('admin')->group(function () {
-    Route::get('/pesan', [PesanController::class, 'admin'])
-        ->name('admin.pesan.index');
 });

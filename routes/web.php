@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DokumenController;
 use App\Http\Controllers\KomplainController;
 use App\Models\SetupKel;
+use App\Http\Controllers\PesanController;
 use Illuminate\Http\Request;
 
 // === 1. ROUTE YANG SELALU BISA DIAKSES (MESKI JADWAL TUTUP) ===
@@ -52,6 +53,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pengajuan-ulang/{id_trx}', [PengajuanUlangController::class, 'showForm'])->name('pengajuan.ulang.form');
     Route::post('/pengajuan-ulang/{id_trx}', [PengajuanUlangController::class, 'submitForm'])->name('pengajuan.ulang.submit');
     Route::delete('/api/hapus-file/{id}', [PengajuanUlangController::class, 'hapusFile'])->name('pengajuan.ulang.hapus.file');
+    Route::get('/pesan', [PesanController::class, 'index'])
+        ->name('pesan.index');
 });
 
 // Rute publik yang dilindungi jadwal (tidak perlu login)
@@ -63,6 +66,8 @@ Route::post('/api/komplain/{id_trx}', [KomplainController::class, 'store'])->nam
 // === 3. RUTE ADMIN (TIDAK TERKENA JADWAL) ===
 Route::middleware(['auth'])->group(function () {
     Route::prefix('admin')->middleware([\App\Http\Middleware\AdminOperatorMiddleware::class])->group(function () {
+        Route::get('/pesan', [PesanController::class, 'admin'])
+            ->name('admin.pesan.index');
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/transaksi', [DashboardController::class, 'transaksiIndex'])->name('admin.transaksi.index');
         Route::get('/transaksi/{id_trx}', [DashboardController::class, 'show'])->name('admin.transaksi.show');
