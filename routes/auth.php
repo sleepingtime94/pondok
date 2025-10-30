@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\PesanController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -58,4 +59,12 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
+
+    Route::get('/pesan', [PesanController::class, 'index'])
+        ->name('pesan.index');
+});
+
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/pesan', [PesanController::class, 'admin'])
+        ->name('admin.pesan.index');
 });
