@@ -26,18 +26,20 @@ use Illuminate\Http\Request;
 Route::get('/formulir', [FormulirController::class, 'index'])->name('formulir.index');
 Route::get('/formulir/download/{filename}', [FormulirController::class, 'download'])->name('formulir.download');
 Route::get('/persyaratan', [PersyaratanController::class, 'index'])->name('persyaratan.index');
+
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-// Route::post('/login', [LoginController::class, 'login'])->middleware('turnstile');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register.form');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
-// Route::post('/register', [RegisterController::class, 'register'])->name('register')->middleware('turnstile');
+
 Route::get('/desa', [LocationController::class, 'getDesa'])->name('get.desa');
 
 // === 2. ROUTE YANG DILINDUNGI JADWAL ===
 // Homepage
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
 // Rute yang memerlukan login
 Route::middleware(['auth'])->group(function () {
     Route::get('/account', [AccountController::class, 'index'])->name('account.index');
