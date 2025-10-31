@@ -314,6 +314,11 @@ return [
             'icon' => 'fas fa-fw fa-file-alt',
         ],
         [
+            'text' => 'Pesan',
+            'url'  => 'admin/pesan',
+            'icon' => 'fas fa-fw fa-comments',
+        ],
+        [
             'text' => 'Aktivasi User',
             'url'  => 'admin/user-baru',
             'icon' => 'fas fa-fw fa-key',
@@ -357,9 +362,9 @@ return [
                     'icon' => 'far fa-clock',
                     // 'can'  => 'admin.operator',
                 ],
-                    ],
-        ],        
-        
+            ],
+        ],
+
         // ['header' => 'STATUS'],
         // [
         //     'text' => 'Baru',
