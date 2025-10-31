@@ -110,7 +110,6 @@
     </style>
 
     <section class="mt-4">
-        {{-- <h2 class="text-lg font-bold mb-2 text-center">Pilih Layanan</h2> --}}
         <div class="grid grid-cols-2 md:grid-cols-2 gap-4">
             {{-- Layanan Online --}}
             <a href="javascript:void(0);" id="adminduk-link" class="animate-bounce-up bg-white/70 rounded-lg shadow-xl overflow-hidden flex flex-col items-center justify-center p-4 transform transition duration-300 hover:scale-105 hover:bg-gray-100">
@@ -350,59 +349,35 @@
 @push('scripts')
 <script>
     Swal.fire({
-        html: `
-    <main class="relative w-screen h-screen overflow-hidden m-0 p-0">
-        <!-- Gambar background -->
-        <div class="absolute inset-0">
-            <img src="/images/kuning1.jpg" 
-                 alt="Background Tapin"
-                 class="w-full h-full object-cover">
-        </div>
-
-        <!-- Overlay lembut -->
-        <div class="absolute inset-0 bg-white/40 backdrop-blur-sm"></div>
-
-        <!-- Konten -->
-        <div class="relative z-10 flex flex-col items-center justify-center text-center h-full px-4 sm:px-6 lg:px-8">
-            <div class="w-full max-w-6xl mx-auto">
-                <span class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-blue-600 tracking-wide mb-3 block">
-                    Layanan Cepat & Mudah
-                </span>
-                <h2 class="font-extrabold text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-900 leading-snug mb-4">
-                    Selamat Datang di Pondok Dukcapil Tapin! 👋
-                </h2>
-                <p class="text-sm sm:text-base md:text-lg text-gray-800 mb-8 max-w-3xl mx-auto">
-                    Akses semua layanan digital dan informasi Kependudukan terbaru dengan mudah.<br>Kami siap melayani Anda.
-                </p>
-                <div class="flex justify-center w-full">
-                    <img src="/images/pejabat.png" 
-                         alt="Ilustrasi Selamat Datang"
-                         class="w-full sm:w-4/5 md:w-3/4 lg:w-2/3 h-auto object-contain rounded-lg transform hover:scale-[1.02] transition duration-300 ease-in-out"
-                         style="max-height: 80vh;">
-                </div>
-            </div>
-        </div>
-    </main>
-    `
-        , showConfirmButton: false
-        , timer: 4000
-        , timerProgressBar: true
+        html: `<main class="relative w-screen h-screen overflow-hidden m-0 p-0"><div class="absolute inset-0"><img src="/images/kuning1.jpg" alt="Background Tapin" class="w-full h-full object-cover"></div><div class="absolute inset-0 bg-white/40 backdrop-blur-sm"></div><div class="relative z-10 flex flex-col items-center justify-center text-center h-full px-4 sm:px-6 lg:px-8"><div class="w-full max-w-6xl mx-auto"><span class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-blue-600 tracking-wide mb-0 block"> PONDOK DUKCAPIL </span><h2 class="font-extrabold text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-900 leading-snug mb-6"> Pelayanan Online Dokumen Kependudukan </h2><div class="flex justify-center w-full mt-5 mb-6"><img src="/images/pejabat.png" alt="Ilustrasi Selamat Datang" class="w-full sm:w-4/5 md:w-3/4 lg:w-2/3 h-auto object-contain rounded-lg transform hover:scale-[1.02] transition duration-300 ease-in-out" style="max-height: 80vh;"></div><button id="custom-confirm-btn" class="bg-yellow-500 text-white px-6 py-2 rounded-full font-bold focus:outline-none transform hover:scale-105 transition duration-200"> Lanjutkan </button></div></div></main>`
+        , showConfirmButton: false, // 👈 Sembunyikan tombol default
+        showCloseButton: false
+        , allowOutsideClick: false
+        , allowEscapeKey: false
         , customClass: {
             popup: '!p-0 !m-0 !w-screen !h-screen !max-w-none !rounded-none bg-transparent'
             , container: '!p-0 !m-0 !w-screen !h-screen !max-w-none'
-            , htmlContainer: '!p-0 !m-0 !h-full !w-full flex'
+            , htmlContainer: '!p-0 !m-0 !h-full !w-full'
         }
-        , backdrop: false
+        , backdrop: 'rgb(255, 252, 102)'
         , didOpen: () => {
-            // Hilangkan style bawaan SweetAlert yang membatasi ukuran
+            // Hilangkan style bawaan yang membatasi
             const swalHtml = document.querySelector('.swal2-html-container');
             if (swalHtml) {
                 swalHtml.style.padding = '0';
                 swalHtml.style.margin = '0';
                 swalHtml.style.height = '100%';
                 swalHtml.style.width = '100%';
-                swalHtml.style.display = 'flex';
-                swalHtml.style.alignItems = 'stretch';
+            }
+
+            // Tambahkan event listener ke tombol kustom
+            const confirmBtn = document.getElementById('custom-confirm-btn');
+            if (confirmBtn) {
+                confirmBtn.addEventListener('click', () => {
+                    Swal.close(); // Tutup modal
+                    // 👉 Tambahkan logika lanjutan di sini jika perlu
+                    // Misalnya: window.location.href = '/next-page';
+                });
             }
         }
     });
