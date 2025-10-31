@@ -3,7 +3,7 @@
 @section('title', 'Admin - Transaksi')
 
 @section('content_header')
-    <!-- <h1>Manajemen Transaksi Permohonan</h1> -->
+<!-- <h1>Manajemen Transaksi Permohonan</h1> -->
 @stop
 
 @section('content')
@@ -18,23 +18,23 @@
                 <div class="row">
                     <div class="col-md-3">
                         <label>Status</label>
-                            <select name="status" class="form-control">
-                                <option value="">Semua Status</option>
-                                @foreach(\App\Models\Transaksi::statusLabels() as $value => $label)
-                                    <option value="{{ $value }}" {{ request('status') == $value ? 'selected' : '' }}>
-                                        {{ $label }}
-                                    </option>
-                                @endforeach
-                            </select>
+                        <select name="status" class="form-control">
+                            <option value="">Semua Status</option>
+                            @foreach(\App\Models\Transaksi::statusLabels() as $value => $label)
+                            <option value="{{ $value }}" {{ request('status') == $value ? 'selected' : '' }}>
+                                {{ $label }}
+                            </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-3">
                         <label>Jenis Dokumen</label>
                         <select name="filter_jenis" class="form-control">
                             <option value="">Semua Jenis</option>
                             @foreach($filterGroups as $group => $keyword)
-                                <option value="{{ $group }}" {{ request('filter_jenis') == $group ? 'selected' : '' }}>
-                                    {{ $group }}
-                                </option>
+                            <option value="{{ $group }}" {{ request('filter_jenis') == $group ? 'selected' : '' }}>
+                                {{ $group }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
@@ -62,7 +62,7 @@
         </div>
         <div class="card-body">
             @if(session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
+            <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
             <div class="mb-3">
@@ -91,44 +91,44 @@
                 </thead>
                 <tbody>
                     @forelse($transaksis as $t)
-                        <tr>
-                            <td>
-                                <div><strong>{{ $t->id_trx }}</strong></div>
-                                <small class="text-muted">{{ \Carbon\Carbon::parse($t->tgl)->format('d-m-Y H:i') }}</small>
-                            </td>
-                            <td>
-                                <div><strong>{{ $t->nama }}</strong></div>
-                                <small class="text-muted">{{ $t->nik }}</small>
-                            </td>
-                            <td>{{ $t->jenisPelayanan->nama ?? 'Lainnya' }}</td>
-                            <td>
-                                <span class="badge {{ $t->status_badge_class }}">
-                                    {{ $t->status_label }}
-                                </span>
+                    <tr>
+                        <td>
+                            <div><strong>{{ $t->id_trx }}</strong></div>
+                            <small class="text-muted">{{ \Carbon\Carbon::parse($t->tgl)->format('d-m-Y H:i') }}</small>
+                        </td>
+                        <td>
+                            <div><strong>{{ $t->nama }}</strong></div>
+                            <small class="text-muted">{{ $t->nik }}</small>
+                        </td>
+                        <td>{{ $t->jenisPelayanan->nama ?? 'Lainnya' }}</td>
+                        <td>
+                            <span class="badge {{ $t->status_badge_class }}">
+                                {{ $t->status_label }}
+                            </span>
 
-                                @if($t->status == 4 && $t->konfirmasi == 'Y')
-                                    <span class="badge bg-success ml-1">Ter-Konfirmasi</span>
-                                @endif
+                            @if($t->status == 4 && $t->konfirmasi == 'Y')
+                            <span class="badge bg-success ml-1">Ter-Konfirmasi</span>
+                            @endif
 
-                                <br>
-                                <small class="text-muted">
-                                    {{ \Carbon\Carbon::parse($t->tgl)->format('d-m-Y H:i') }}
-                                </small>
-                            </td>
-                            <td>
-                                <a href="{{ route('admin.transaksi.show', $t->id_trx) }}" class="btn btn-sm btn-info">Detail</a>
-                            </td>
-                        </tr>
+                            <br>
+                            <small class="text-muted">
+                                {{ \Carbon\Carbon::parse($t->tgl)->format('d-m-Y H:i') }}
+                            </small>
+                        </td>
+                        <td>
+                            <a href="{{ route('admin.transaksi.show', $t->id_trx) }}" class="btn btn-sm btn-info">Detail</a>
+                        </td>
+                    </tr>
                     @empty
-                        <tr>
-                            <td colspan="6" class="text-center">Tidak ada data</td>
-                        </tr>
+                    <tr>
+                        <td colspan="6" class="text-center">Tidak ada data</td>
+                    </tr>
                     @endforelse
                 </tbody>
             </table>
 
-            {{ $transaksis->appends(request()->query())->links() }}
-                        <!-- Pagination -->
+
+            <!-- Pagination -->
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <div>
                     Showing {{ $transaksis->firstItem() }} to {{ $transaksis->lastItem() }} of {{ $transaksis->total() }} results
@@ -138,7 +138,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>
 @endsection
