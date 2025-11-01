@@ -443,7 +443,8 @@
         box.innerHTML = '<div style="text-align:center; color:#888;">Memuat pesan...</div>';
 
         try {
-            const response = await fetch(`${SERVER_URL}/api/messages/${ADMIN_ID}/${USER_ID}`);
+            const response = await fetch(`${SERVER_URL}/chat/messages/${ADMIN_ID}/${USER_ID}`);
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
